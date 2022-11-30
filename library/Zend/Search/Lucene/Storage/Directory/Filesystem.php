@@ -207,15 +207,11 @@ class Zend_Search_Lucene_Storage_Directory_Filesystem extends Zend_Search_Lucene
         }
         unset($this->_fileHandlers[$filename]);
 
-        global $php_errormsg;
-        $trackErrors = ini_get('track_errors');
-        ini_set('track_errors', '1');
         if (!@unlink($this->_dirPath . '/' . $filename)) {
-            ini_set('track_errors', $trackErrors);
             require_once 'Zend/Search/Lucene/Exception.php';
-            throw new Zend_Search_Lucene_Exception('Can\'t delete file: ' . $php_errormsg);
+            $message = error_get_last()['message'] ?? 'Unknown error';
+            throw new Zend_Search_Lucene_Exception('Can\'t delete file: ' . $message);
         }
-        ini_set('track_errors', $trackErrors);
     }
 
     /**
@@ -285,8 +281,6 @@ class Zend_Search_Lucene_Storage_Directory_Filesystem extends Zend_Search_Lucene
      */
     public function renameFile($from, $to)
     {
-        global $php_errormsg;
-
         if (isset($this->_fileHandlers[$from])) {
             $this->_fileHandlers[$from]->close();
         }
@@ -304,17 +298,11 @@ class Zend_Search_Lucene_Storage_Directory_Filesystem extends Zend_Search_Lucene
             }
         }
 
-        $trackErrors = ini_get('track_errors');
-        ini_set('track_errors', '1');
-
         $success = @rename($this->_dirPath . '/' . $from, $this->_dirPath . '/' . $to);
         if (!$success) {
-            ini_set('track_errors', $trackErrors);
             require_once 'Zend/Search/Lucene/Exception.php';
-            throw new Zend_Search_Lucene_Exception($php_errormsg);
+            throw new Zend_Search_Lucene_Exception(error_get_last()['message'] ?? 'Unknown error');
         }
-
-        ini_set('track_errors', $trackErrors);
 
         return $success;
     }
