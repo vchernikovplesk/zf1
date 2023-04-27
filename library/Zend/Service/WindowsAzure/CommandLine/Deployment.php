@@ -66,10 +66,10 @@ class Zend_Service_WindowsAzure_CommandLine_Deployment
 	 * @command-parameter-for $serviceName Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile|Zend_Service_Console_Command_ParameterSource_Env --Name Required. The hosted service account name to operate on.
 	 * @command-parameter-for $deploymentName Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --DeploymentName Required. The name for the deployment.
 	 * @command-parameter-for $label Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --Label Required. The label for the deployment.
+     * @command-parameter-for $packageUrl Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --PackageUrl Required. The remote location of the .cspkg file.
+     * @command-parameter-for $serviceConfigurationLocation Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --ServiceConfigLocation Required. The location of the .cspkg file.
 	 * @command-parameter-for $staging Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --Staging Host the service in the staging slot.
 	 * @command-parameter-for $production Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --Production Host the service in the staging slot.
-	 * @command-parameter-for $packageUrl Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --PackageUrl Required. The remote location of the .cspkg file.
-	 * @command-parameter-for $serviceConfigurationLocation Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --ServiceConfigLocation Required. The location of the .cspkg file.
 	 * @command-parameter-for $startImmediately Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --StartImmediately Optional. Start the deployment after creation.
 	 * @command-parameter-for $warningsAsErrors Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --WarningsAsErrors Optional. Treat warnings as errors.
 	 * @command-parameter-for $waitForOperation Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --WaitFor|-w Optional. Wait for the operation to complete?
@@ -79,7 +79,7 @@ class Zend_Service_WindowsAzure_CommandLine_Deployment
 	 * @command-example --PackageUrl:"http://acct.blob.core.windows.net/pkgs/service.cspkg"
 	 * @command-example --ServiceConfigLocation:".\ServiceConfiguration.cscfg" --StartImmediately --WaitFor
 	 */
-	public function createFromStorageCommand($subscriptionId, $certificate, $certificatePassphrase, $serviceName, $deploymentName, $label, $staging = false, $production = false, $packageUrl, $serviceConfigurationLocation, $startImmediately = true, $warningsAsErrors = false, $waitForOperation = false)
+	public function createFromStorageCommand($subscriptionId, $certificate, $certificatePassphrase, $serviceName, $deploymentName, $label, $packageUrl, $serviceConfigurationLocation, $staging = false, $production = false, $startImmediately = true, $warningsAsErrors = false, $waitForOperation = false)
 	{
 		$deploymentSlot = 'staging';
 		if (!$staging && !$production) {
@@ -109,11 +109,11 @@ class Zend_Service_WindowsAzure_CommandLine_Deployment
 	 * @command-parameter-for $serviceName Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile|Zend_Service_Console_Command_ParameterSource_Env --Name Required. The hosted service account name to operate on.
 	 * @command-parameter-for $deploymentName Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --DeploymentName Required. The name for the deployment.
 	 * @command-parameter-for $label Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --Label Required. The label for the deployment.
+     * @command-parameter-for $packageLocation Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --PackageLocation Required. The location of the .cspkg file.
+     * @command-parameter-for $serviceConfigurationLocation Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --ServiceConfigLocation Required. The location of the .cspkg file.
+     * @command-parameter-for $storageAccount Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --StorageAccount Required. Storage account to use when creating the deployment.
 	 * @command-parameter-for $staging Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --Staging Host the service in the staging slot.
 	 * @command-parameter-for $production Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --Production Host the service in the staging slot.
-	 * @command-parameter-for $packageLocation Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --PackageLocation Required. The location of the .cspkg file.
-	 * @command-parameter-for $serviceConfigurationLocation Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --ServiceConfigLocation Required. The location of the .cspkg file.
-	 * @command-parameter-for $storageAccount Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --StorageAccount Required. Storage account to use when creating the deployment.
 	 * @command-parameter-for $startImmediately Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --StartImmediately Optional. Start the deployment after creation.
 	 * @command-parameter-for $warningsAsErrors Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --WarningsAsErrors Optional. Treat warnings as errors.
 	 * @command-parameter-for $waitForOperation Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --WaitFor|-w Optional. Wait for the operation to complete?
@@ -123,7 +123,7 @@ class Zend_Service_WindowsAzure_CommandLine_Deployment
 	 * @command-example --ServiceConfigLocation:".\ServiceConfiguration.cscfg" --StorageAccount:"mystorage"
 	 * @command-example --StartImmediately --WaitFor
 	 */
-	public function createFromLocalCommand($subscriptionId, $certificate, $certificatePassphrase, $serviceName, $deploymentName, $label, $staging = false, $production = false, $packageLocation, $serviceConfigurationLocation, $storageAccount, $startImmediately = true, $warningsAsErrors = false, $waitForOperation = false)
+	public function createFromLocalCommand($subscriptionId, $certificate, $certificatePassphrase, $serviceName, $deploymentName, $label, $packageLocation, $serviceConfigurationLocation, $storageAccount, $staging = false, $production = false, $startImmediately = true, $warningsAsErrors = false, $waitForOperation = false)
 	{
 		$deploymentSlot = 'staging';
 		if (!$staging && !$production) {

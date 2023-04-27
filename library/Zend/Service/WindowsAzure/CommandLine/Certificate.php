@@ -138,12 +138,12 @@ class Zend_Service_WindowsAzure_CommandLine_Certificate
 	 * @command-parameter-for $certificatePassphrase Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile|Zend_Service_Console_Command_ParameterSource_Prompt --Passphrase|-p Required. The certificate passphrase. If not specified, a prompt will be displayed.
 	 * @command-parameter-for $serviceName Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile|Zend_Service_Console_Command_ParameterSource_Env --ServiceName|-sn Required. The name of the hosted service.
 	 * @command-parameter-for $thumbprint Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --CertificateThumbprint Required. The certificate thumbprint for which to retrieve the certificate.
-	 * @command-parameter-for $algorithm Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --CertificateAlgorithm Required. The certificate's algorithm.
 	 * @command-parameter-for $property Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --Property|-prop Required. The property to retrieve for the certificate.
+     * @command-parameter-for $algorithm Zend_Service_Console_Command_ParameterSource_Argv|Zend_Service_Console_Command_ParameterSource_ConfigFile --CertificateAlgorithm Required. The certificate's algorithm.
 	 * @command-example Get certificate for service name "phptest":
 	 * @command-example Get -sid:"<your_subscription_id>" -cert:"mycert.pem" -sn:"phptest" --CertificateThumbprint:"<thumbprint>" --CertificateAlgorithm:"sha1"
 	 */
-	public function getCertificatePropertyCommand($subscriptionId, $certificate, $certificatePassphrase, $serviceName, $thumbprint, $algorithm = "sha1", $property)
+	public function getCertificatePropertyCommand($subscriptionId, $certificate, $certificatePassphrase, $serviceName, $thumbprint, $property, $algorithm = "sha1")
 	{
 		$client = new Zend_Service_WindowsAzure_Management_Client($subscriptionId, $certificate, $certificatePassphrase);
 		$result = $client->getCertificate($serviceName, $algorithm, $thumbprint);
