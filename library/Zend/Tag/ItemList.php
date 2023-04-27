@@ -197,9 +197,10 @@ class Zend_Tag_ItemList implements Countable, SeekableIterator, ArrayAccess
      * Get the value of an offset
      *
      * @param  mixed $offset
-     * @return Zend_Tag_Taggable
+     * @return Zend_Tag_Taggable|null
      */
-    public function offsetGet($offset) {
+    public function offsetGet($offset): ?Zend_Tag_Taggable
+    {
         return $this->_items[$offset];
     }
 

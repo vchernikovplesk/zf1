@@ -386,7 +386,7 @@ class Zend_Feed_Element implements ArrayAccess
      * @param  string $offset
      * @return string
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): string
     {
         if (strpos($offset, ':') !== false) {
             list($ns, $attr) = explode(':', $offset, 2);

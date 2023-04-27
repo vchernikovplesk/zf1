@@ -176,10 +176,10 @@ class Zend_Cloud_Infrastructure_InstanceList implements Countable, Iterator, Arr
      * Implement ArrayAccess::offsetGet()
      *
      * @param  int $offset
-     * @return Instance
+     * @return Zend_Cloud_Infrastructure_Instance
      * @throws Zend_Cloud_Infrastructure_Exception
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): Zend_Cloud_Infrastructure_Instance
     {
         if (!$this->offsetExists($offset)) {
             require_once 'Zend/Cloud/Infrastructure/Exception.php';

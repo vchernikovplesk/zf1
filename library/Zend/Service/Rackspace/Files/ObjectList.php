@@ -196,7 +196,7 @@ class Zend_Service_Rackspace_Files_ObjectList implements Countable, Iterator, Ar
      * @throws  Zend_Service_Rackspace_Files_Exception
      * @return  Zend_Service_Rackspace_Files_Object
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): Zend_Service_Rackspace_Files_Object
     {
         if ($this->offsetExists($offset)) {
             return $this->objects[$offset];
