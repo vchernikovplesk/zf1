@@ -88,7 +88,7 @@ class Zend_Pdf_Element_Reference extends Zend_Pdf_Element
      * @param Zend_Pdf_ElementFactory $factory
      * @throws Zend_Pdf_Exception
      */
-    public function __construct($objNum, $genNum = 0, Zend_Pdf_Element_Reference_Context $context, Zend_Pdf_ElementFactory $factory)
+    public function __construct($objNum, $genNum = 0, Zend_Pdf_Element_Reference_Context $context = null, Zend_Pdf_ElementFactory $factory = null)
     {
         if ( !(is_integer($objNum) && $objNum > 0) ) {
             require_once 'Zend/Pdf/Exception.php';
@@ -97,6 +97,14 @@ class Zend_Pdf_Element_Reference extends Zend_Pdf_Element
         if ( !(is_integer($genNum) && $genNum >= 0) ) {
             require_once 'Zend/Pdf/Exception.php';
             throw new Zend_Pdf_Exception('Generation number must be non-negative integer');
+        }
+        if ($context === null) {
+            require_once 'Zend/Pdf/Exception.php';
+            throw new Zend_Pdf_Exception('Context argument is not defined');
+        }
+        if ($factory === null) {
+            require_once 'Zend/Pdf/Exception.php';
+            throw new Zend_Pdf_Exception('Factory argument is not defined');
         }
 
         $this->_objNum  = $objNum;
