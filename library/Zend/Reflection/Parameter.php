@@ -38,7 +38,7 @@ class Zend_Reflection_Parameter extends ReflectionParameter
      * @param  string $reflectionClass Reflection class to use
      * @return Zend_Reflection_Class
      */
-    public function getDeclaringClass($reflectionClass = 'Zend_Reflection_Class')
+    public function getDeclaringClass($reflectionClass = 'Zend_Reflection_Class'): Zend_Reflection_Class
     {
         $phpReflection  = parent::getDeclaringClass();
         $zendReflection = new $reflectionClass($phpReflection->getName());
@@ -54,9 +54,9 @@ class Zend_Reflection_Parameter extends ReflectionParameter
      * Get class reflection object
      *
      * @param  string $reflectionClass Reflection class to use
-     * @return Zend_Reflection_Class
+     * @return Zend_Reflection_Class|null
      */
-    public function getClass($reflectionClass = 'Zend_Reflection_Class')
+    public function getClass($reflectionClass = 'Zend_Reflection_Class'): ?Zend_Reflection_Class
     {
         $phpReflection  = parent::getClass();
         if($phpReflection == null) {
@@ -78,7 +78,7 @@ class Zend_Reflection_Parameter extends ReflectionParameter
      * @param  string $reflectionClass Reflection class to use
      * @return Zend_Reflection_Function|Zend_Reflection_Method
      */
-    public function getDeclaringFunction($reflectionClass = null)
+    public function getDeclaringFunction($reflectionClass = null): Zend_Reflection_Function|Zend_Reflection_Method
     {
         $phpReflection = parent::getDeclaringFunction();
         if ($phpReflection instanceof ReflectionMethod) {
@@ -105,9 +105,10 @@ class Zend_Reflection_Parameter extends ReflectionParameter
     /**
      * Get parameter type
      *
-     * @return string
+     * @return string|null
      */
-    public function getType()
+    #[ReturnTypeWillChange]
+    public function getType(): ?string
     {
         if ($docblock = $this->getDeclaringFunction()->getDocblock()) {
             $params = $docblock->getTags('param');
