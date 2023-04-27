@@ -49,9 +49,9 @@ class Zend_Tool_Framework_Loader_IncludePathLoader_RecursiveFilterIterator exten
     /**
      * accept() - Which iterable items to accept or deny, required by FilterInterface
      *
-     * @return unknown
+     * @return bool
      */
-    public function accept()
+    public function accept(): bool
     {
         $currentNode = $this->current();
         $currentNodeRealPath = $currentNode->getRealPath();

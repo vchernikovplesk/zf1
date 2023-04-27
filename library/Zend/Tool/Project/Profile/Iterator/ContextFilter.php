@@ -165,7 +165,7 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
      *
      * @return bool
      */
-    public function accept()
+    public function accept(): bool
     {
         $currentItem = $this->current();
 
