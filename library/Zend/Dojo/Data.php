@@ -420,7 +420,7 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
      * @param  string|int $offset
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return (null !== $this->getItem($offset));
     }
@@ -429,9 +429,9 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
      * ArrayAccess: retrieve by offset
      *
      * @param  string|int $offset
-     * @return array|null
+     * @return array
      */
-    public function offsetGet($offset): ?array
+    public function offsetGet($offset): mixed
     {
         return $this->getItem($offset);
     }
@@ -443,7 +443,7 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
      * @param  array|object|null $value
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->setItem($value, $offset);
     }
@@ -454,7 +454,7 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
      * @param  string $offset
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         $this->removeItem($offset);
     }
@@ -472,9 +472,9 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
     /**
      * Iterator: get current key
      *
-     * @return string|int
+     * @return string|int|null
      */
-    public function key()
+    public function key(): string|int|null
     {
         return key($this->_items);
     }
@@ -484,6 +484,7 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function next()
     {
         return next($this->_items);
@@ -494,6 +495,7 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         return reset($this->_items);
@@ -504,7 +506,7 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
      *
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         return (bool) $this->current();
     }
@@ -514,7 +516,7 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->_items);
     }

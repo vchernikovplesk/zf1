@@ -58,9 +58,9 @@ class Zend_Ldap_Node_Collection extends Zend_Ldap_Collection
      * Return the child key (DN).
      * Implements Iterator and RecursiveIterator
      *
-     * @return string
+     * @return string|null
      */
-    public function key()
+    public function key(): string|null
     {
         return $this->_iterator->key();
     }

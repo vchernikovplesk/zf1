@@ -530,7 +530,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return bool check if there's a current element
      */
-    public function valid()
+    public function valid(): bool
     {
         if ($this->_countParts === null) {
             $this->countParts();
@@ -543,7 +543,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return null
      */
-    public function next()
+    public function next(): void
     {
         ++$this->_iterationPos;
     }
@@ -553,7 +553,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return string key/number of current part
      */
-    public function key()
+    public function key(): mixed
     {
         return $this->_iterationPos;
     }
@@ -563,7 +563,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return Zend_Mail_Part current part
      */
-    public function current()
+    public function current(): Zend_Mail_Part
     {
         return $this->getPart($this->_iterationPos);
     }
@@ -571,9 +571,9 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
     /**
      * implements Iterator::rewind()
      *
-     * @return null
+     * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->countParts();
         $this->_iterationPos = 1;

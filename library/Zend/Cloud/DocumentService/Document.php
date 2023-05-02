@@ -161,7 +161,7 @@ class Zend_Cloud_DocumentService_Document
      * @param  string $name
      * @return bool
      */
-    public function offsetExists($name)
+    public function offsetExists($name): bool
     {
         return isset($this->_fields[$name]);
     }
@@ -184,7 +184,7 @@ class Zend_Cloud_DocumentService_Document
      * @param  mixed $value
      * @return void
      */
-    public function offsetSet($name, $value)
+    public function offsetSet($name, $value): void
     {
         $this->setField($name, $value);
     }
@@ -195,7 +195,7 @@ class Zend_Cloud_DocumentService_Document
      * @param  string $name
      * @return void
      */
-    public function offsetUnset($name)
+    public function offsetUnset($name): void
     {
         if ($this->offsetExists($name)) {
             unset($this->_fields[$name]);
@@ -231,7 +231,7 @@ class Zend_Cloud_DocumentService_Document
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->_fields);
     }
@@ -241,7 +241,7 @@ class Zend_Cloud_DocumentService_Document
      *
      * @return Iterator
      */
-    public function getIterator()
+    public function getIterator(): Iterator
     {
         return new ArrayIterator($this->_fields);
     }

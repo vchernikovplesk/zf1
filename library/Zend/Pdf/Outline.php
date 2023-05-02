@@ -293,9 +293,9 @@ abstract class Zend_Pdf_Outline implements RecursiveIterator, Countable
     /**
      * Returns the child outline.
      *
-     * @return Zend_Pdf_Outline
+     * @return Zend_Pdf_Action|false
      */
-    public function current()
+    public function current(): Zend_Pdf_Action|false
     {
         return current($this->childOutlines);
     }
@@ -305,7 +305,7 @@ abstract class Zend_Pdf_Outline implements RecursiveIterator, Countable
      *
      * @return integer
      */
-    public function key()
+    public function key(): ?int
     {
         return key($this->childOutlines);
     }
@@ -313,6 +313,7 @@ abstract class Zend_Pdf_Outline implements RecursiveIterator, Countable
     /**
      * Go to next child
      */
+    #[ReturnTypeWillChange]
     public function next()
     {
         return next($this->childOutlines);
@@ -321,6 +322,7 @@ abstract class Zend_Pdf_Outline implements RecursiveIterator, Countable
     /**
      * Rewind children
      */
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         return reset($this->childOutlines);
@@ -331,7 +333,7 @@ abstract class Zend_Pdf_Outline implements RecursiveIterator, Countable
      *
      * @return boolean
      */
-    public function valid()
+    public function valid(): bool
     {
         return current($this->childOutlines) !== false;
     }
@@ -366,7 +368,7 @@ abstract class Zend_Pdf_Outline implements RecursiveIterator, Countable
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->childOutlines);
     }

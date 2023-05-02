@@ -105,7 +105,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          * 
          * @return int
          */
-        public function count()
+        public function count(): int
         {
             return $this->count;
         }
@@ -115,7 +115,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          *
          * @return mixed
          */
-        public function current()
+        public function current(): mixed
         {
             if (!$this->preparedQueue) {
                 $this->rewind();
@@ -227,7 +227,7 @@ if (!is_array($this->preparedQueue)) {
          *
          * @return mixed Usually an int or string
          */
-        public function key()
+        public function key(): mixed
         {
             return $this->count;
         }
@@ -259,7 +259,7 @@ if (!is_array($this->preparedQueue)) {
          *
          * @return void
          */
-        public function rewind()
+        public function rewind(): void
         {
             if (!$this->preparedQueue) {
                 $this->prepareQueue();
@@ -328,7 +328,7 @@ if (!is_array($this->preparedQueue)) {
          *
          * @return bool
          */
-        public function valid()
+        public function valid(): bool
         {
             return (bool) $this->count;
         }

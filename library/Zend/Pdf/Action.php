@@ -324,9 +324,9 @@ abstract class Zend_Pdf_Action extends Zend_Pdf_Target implements RecursiveItera
     /**
      * Returns current child action.
      *
-     * @return Zend_Pdf_Action
+     * @return Zend_Pdf_Action|false
      */
-    public function current()
+    public function current(): Zend_Pdf_Action|false
     {
         return current($this->next);
     }
@@ -334,9 +334,9 @@ abstract class Zend_Pdf_Action extends Zend_Pdf_Target implements RecursiveItera
     /**
      * Returns current iterator key
      *
-     * @return integer
+     * @return integer|null
      */
-    public function key()
+    public function key(): ?int
     {
         return key($this->next);
     }
@@ -344,6 +344,7 @@ abstract class Zend_Pdf_Action extends Zend_Pdf_Target implements RecursiveItera
     /**
      * Go to next child
      */
+    #[ReturnTypeWillChange]
     public function next()
     {
         return next($this->next);
@@ -352,6 +353,7 @@ abstract class Zend_Pdf_Action extends Zend_Pdf_Target implements RecursiveItera
     /**
      * Rewind children
      */
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         return reset($this->next);
@@ -362,7 +364,7 @@ abstract class Zend_Pdf_Action extends Zend_Pdf_Target implements RecursiveItera
      *
      * @return boolean
      */
-    public function valid()
+    public function valid(): bool
     {
         return current($this->next) !== false;
     }
@@ -397,7 +399,7 @@ abstract class Zend_Pdf_Action extends Zend_Pdf_Target implements RecursiveItera
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->childOutlines);
     }

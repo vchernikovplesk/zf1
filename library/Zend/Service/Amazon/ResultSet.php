@@ -106,7 +106,7 @@ class Zend_Service_Amazon_ResultSet implements SeekableIterator
      *
      * @return Zend_Service_Amazon_Item
      */
-    public function current()
+    public function current(): Zend_Service_Amazon_Item
     {
         return new Zend_Service_Amazon_Item($this->_results->item($this->_currentIndex));
     }
@@ -116,7 +116,7 @@ class Zend_Service_Amazon_ResultSet implements SeekableIterator
      *
      * @return int
      */
-    public function key()
+    public function key(): int
     {
         return $this->_currentIndex;
     }
@@ -126,7 +126,7 @@ class Zend_Service_Amazon_ResultSet implements SeekableIterator
      *
      * @return void
      */
-    public function next()
+    public function next(): void
     {
         $this->_currentIndex += 1;
     }
@@ -136,7 +136,7 @@ class Zend_Service_Amazon_ResultSet implements SeekableIterator
      *
      * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->_currentIndex = 0;
     }
@@ -163,7 +163,7 @@ class Zend_Service_Amazon_ResultSet implements SeekableIterator
      *
      * @return boolean
      */
-    public function valid()
+    public function valid(): bool
     {
         return null !== $this->_results && $this->_currentIndex < $this->_results->length;
     }

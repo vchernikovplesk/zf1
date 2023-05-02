@@ -44,9 +44,9 @@ class Zend_Reflection_TestSampleClass2 implements IteratorAggregate
         return $this->_prop2;
     }
 
-    public function getIterator()
+    public function getIterator(): Traversable
     {
-        return array();
+        return new ArrayObject();
     }
 
 }

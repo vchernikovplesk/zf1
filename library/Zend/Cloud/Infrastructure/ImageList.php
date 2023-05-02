@@ -87,7 +87,7 @@ class Zend_Cloud_Infrastructure_ImageList implements Countable, Iterator, ArrayA
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->images);
     }
@@ -97,9 +97,9 @@ class Zend_Cloud_Infrastructure_ImageList implements Countable, Iterator, ArrayA
      *
      * Implement Iterator::current()
      *
-     * @return Image
+     * @return Zend_Cloud_Infrastructure_Image|null
      */
-    public function current()
+    public function current(): ?Zend_Cloud_Infrastructure_Image
     {
         return $this->images[$this->iteratorKey];
     }
@@ -111,7 +111,7 @@ class Zend_Cloud_Infrastructure_ImageList implements Countable, Iterator, ArrayA
      *
      * @return int
      */
-    public function key()
+    public function key(): int
     {
         return $this->iteratorKey;
     }
@@ -123,7 +123,7 @@ class Zend_Cloud_Infrastructure_ImageList implements Countable, Iterator, ArrayA
      *
      * @return void
      */
-    public function next()
+    public function next(): void
     {
         $this->iteratorKey++;
     }
@@ -135,7 +135,7 @@ class Zend_Cloud_Infrastructure_ImageList implements Countable, Iterator, ArrayA
      *
      * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->iteratorKey = 0;
     }
@@ -147,7 +147,7 @@ class Zend_Cloud_Infrastructure_ImageList implements Countable, Iterator, ArrayA
      *
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         $numItems = $this->count();
         if ($numItems > 0 && $this->iteratorKey < $numItems) {
@@ -164,7 +164,7 @@ class Zend_Cloud_Infrastructure_ImageList implements Countable, Iterator, ArrayA
      * @param   int     $offset
      * @return  bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return ($offset < $this->count());
     }
@@ -196,7 +196,7 @@ class Zend_Cloud_Infrastructure_ImageList implements Countable, Iterator, ArrayA
      * @param   string  $value
      * @throws  Zend_Cloud_Infrastructure_Exception
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         require_once 'Zend/Cloud/Infrastructure/Exception.php';
         throw new Zend_Cloud_Infrastructure_Exception('You are trying to set read-only property');
@@ -210,7 +210,7 @@ class Zend_Cloud_Infrastructure_ImageList implements Countable, Iterator, ArrayA
      * @param   int     $offset
      * @throws  Zend_Cloud_Infrastructure_Exception
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         require_once 'Zend/Cloud/Infrastructure/Exception.php';
         throw new Zend_Cloud_Infrastructure_Exception('You are trying to unset read-only property');

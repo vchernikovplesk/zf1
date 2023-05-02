@@ -554,27 +554,29 @@ class Zend_Dojo_DataTest_DataCollection implements Iterator
         }
     }
 
-    public function current()
+    public function current(): mixed
     {
         return current($this->items);
     }
 
-    public function key()
+    public function key(): string|int|null
     {
         return key($this->items);
     }
 
+    #[ReturnTypeWillChange]
     public function next()
     {
         return next($this->items);
     }
 
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         return reset($this->items);
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return (bool) $this->current();
     }

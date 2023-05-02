@@ -60,7 +60,7 @@ class Zend_Ldap_Node_ChildrenIterator implements Iterator, Countable, RecursiveI
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->_data);
     }
@@ -71,7 +71,7 @@ class Zend_Ldap_Node_ChildrenIterator implements Iterator, Countable, RecursiveI
      *
      * @return Zend_Ldap_Node
      */
-    public function current()
+    public function current(): mixed
     {
         return current($this->_data);
     }
@@ -80,9 +80,9 @@ class Zend_Ldap_Node_ChildrenIterator implements Iterator, Countable, RecursiveI
      * Return the child'd RDN.
      * Implements Iterator
      *
-     * @return string
+     * @return string|null
      */
-    public function key()
+    public function key(): ?string
     {
         return key($this->_data);
     }
@@ -91,7 +91,7 @@ class Zend_Ldap_Node_ChildrenIterator implements Iterator, Countable, RecursiveI
      * Move forward to next child.
      * Implements Iterator
      */
-    public function next()
+    public function next(): void
     {
         next($this->_data);
     }
@@ -100,7 +100,7 @@ class Zend_Ldap_Node_ChildrenIterator implements Iterator, Countable, RecursiveI
      * Rewind the Iterator to the first child.
      * Implements Iterator
      */
-    public function rewind()
+    public function rewind(): void
     {
         reset($this->_data);
     }
@@ -112,7 +112,7 @@ class Zend_Ldap_Node_ChildrenIterator implements Iterator, Countable, RecursiveI
      *
      * @return boolean
      */
-    public function valid()
+    public function valid(): bool
     {
         return (current($this->_data)!==false);
     }
@@ -169,7 +169,7 @@ class Zend_Ldap_Node_ChildrenIterator implements Iterator, Countable, RecursiveI
      * @param  string $rdn
      * @return boolean
      */
-    public function offsetExists($rdn)
+    public function offsetExists($rdn): bool
     {
         return (array_key_exists($rdn, $this->_data));
     }
@@ -181,7 +181,7 @@ class Zend_Ldap_Node_ChildrenIterator implements Iterator, Countable, RecursiveI
      * @param  string $name
      * @return null
      */
-    public function offsetUnset($name) { }
+    public function offsetUnset($name): void { }
 
     /**
      * Does nothing.
@@ -191,7 +191,7 @@ class Zend_Ldap_Node_ChildrenIterator implements Iterator, Countable, RecursiveI
      * @param  mixed $value
      * @return null
      */
-    public function offsetSet($name, $value) { }
+    public function offsetSet($name, $value): void { }
 
     /**
      * Get all children as an array

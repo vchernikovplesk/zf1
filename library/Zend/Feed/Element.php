@@ -193,7 +193,7 @@ class Zend_Feed_Element implements ArrayAccess
         if ($length == 1) {
             return new Zend_Feed_Element($nodes[0]);
         } elseif ($length > 1) {
-            return array_map(create_function('$e', 'return new Zend_Feed_Element($e);'), $nodes);
+            return array_map(fn ($e) => new Zend_Feed_Element($e), $nodes);
         } else {
             // When creating anonymous nodes for __set chaining, don't
             // call appendChild() on them. Instead we pass the current
@@ -369,7 +369,7 @@ class Zend_Feed_Element implements ArrayAccess
      * @param  string $offset
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         if (strpos($offset, ':') !== false) {
             list($ns, $attr) = explode(':', $offset, 2);
@@ -404,16 +404,16 @@ class Zend_Feed_Element implements ArrayAccess
      * @param  string $value
      * @return string
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->ensureAppended();
 
         if (strpos($offset, ':') !== false) {
             list($ns, $attr) = explode(':', $offset, 2);
             // DOMElement::setAttributeNS() requires $qualifiedName to have a prefix
-            return $this->_element->setAttributeNS(Zend_Feed::lookupNamespace($ns), $offset, $value);
+            $this->_element->setAttributeNS(Zend_Feed::lookupNamespace($ns), $offset, $value);
         } else {
-            return $this->_element->setAttribute($offset, $value);
+            $this->_element->setAttribute($offset, $value);
         }
     }
 
@@ -424,6 +424,7 @@ class Zend_Feed_Element implements ArrayAccess
      * @param  string $offset
      * @return boolean
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         if (strpos($offset, ':') !== false) {

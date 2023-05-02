@@ -411,27 +411,29 @@ class Zend_View_Helper_PartialLoop_IteratorTest implements Iterator
         $this->items = $array;
     }
 
-    public function current()
+    public function current(): mixed
     {
         return current($this->items);
     }
 
-    public function key()
+    public function key(): string|int|null
     {
         return key($this->items);
     }
 
+    #[ReturnTypeWillChange]
     public function next()
     {
         return next($this->items);
     }
 
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         return reset($this->items);
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return (current($this->items) !== false);
     }
@@ -457,27 +459,29 @@ class Zend_View_Helper_PartialLoop_RecursiveIteratorTest implements Iterator
         return $this;
     }
 
-    public function current()
+    public function current(): mixed
     {
         return current($this->items);
     }
 
-    public function key()
+    public function key(): string|int|null
     {
         return key($this->items);
     }
 
+    #[ReturnTypeWillChange]
     public function next()
     {
         return next($this->items);
     }
 
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         return reset($this->items);
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return (current($this->items) !== false);
     }
@@ -514,27 +518,29 @@ class Zend_View_Helper_PartialLoop_IteratorWithToArrayTest implements Iterator
         return $this->items;
     }
 
-    public function current()
+    public function current(): mixed
     {
         return current($this->items);
     }
 
-    public function key()
+    public function key(): string|int|null
     {
         return key($this->items);
     }
 
+    #[ReturnTypeWillChange]
     public function next()
     {
         return next($this->items);
     }
 
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         return reset($this->items);
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return (current($this->items) !== false);
     }

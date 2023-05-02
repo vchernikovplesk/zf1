@@ -96,7 +96,7 @@ class Zend_Mail_Storage_Folder implements RecursiveIterator
      *
      * @return bool check if there's a current element
      */
-    public function valid()
+    public function valid(): bool
     {
         return key($this->_folders) !== null;
     }
@@ -106,7 +106,7 @@ class Zend_Mail_Storage_Folder implements RecursiveIterator
      *
      * @return null
      */
-    public function next()
+    public function next(): void
     {
         next($this->_folders);
     }
@@ -114,9 +114,9 @@ class Zend_Mail_Storage_Folder implements RecursiveIterator
     /**
      * implements Iterator::key()
      *
-     * @return string key/local name of current element
+     * @return string|null key/local name of current element
      */
-    public function key()
+    public function key(): ?string
     {
         return key($this->_folders);
     }
@@ -124,9 +124,9 @@ class Zend_Mail_Storage_Folder implements RecursiveIterator
     /**
      * implements Iterator::current()
      *
-     * @return Zend_Mail_Storage_Folder current folder
+     * @return Zend_Mail_Storage_Folder|false current folder
      */
-    public function current()
+    public function current(): Zend_Mail_Storage_Folder|false
     {
         return current($this->_folders);
     }
@@ -136,7 +136,7 @@ class Zend_Mail_Storage_Folder implements RecursiveIterator
      *
      * @return null
      */
-    public function rewind()
+    public function rewind(): void
     {
         reset($this->_folders);
     }

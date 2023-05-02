@@ -177,7 +177,7 @@ class Zend_Ldap_Collection_Iterator_Default implements Iterator, Countable
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return $this->_itemCount;
     }
@@ -189,7 +189,7 @@ class Zend_Ldap_Collection_Iterator_Default implements Iterator, Countable
      * @return array|null
      * @throws Zend_Ldap_Exception
      */
-    public function current()
+    public function current(): mixed
     {
         if (!is_resource($this->_current)) {
             $this->rewind();
@@ -234,7 +234,7 @@ class Zend_Ldap_Collection_Iterator_Default implements Iterator, Countable
      *
      * @return string|null
      */
-    public function key()
+    public function key(): string|null
     {
         if (!is_resource($this->_current)) {
             $this->rewind();
@@ -258,7 +258,7 @@ class Zend_Ldap_Collection_Iterator_Default implements Iterator, Countable
      *
      * @throws Zend_Ldap_Exception
      */
-    public function next()
+    public function next(): void
     {
         if (is_resource($this->_current) && $this->_itemCount > 0) {
             $this->_current = @ldap_next_entry($this->_ldap->getResource(), $this->_current);
@@ -284,7 +284,7 @@ class Zend_Ldap_Collection_Iterator_Default implements Iterator, Countable
      *
      * @throws Zend_Ldap_Exception
      */
-    public function rewind()
+    public function rewind(): void
     {
         if (is_resource($this->_resultId)) {
             $this->_current = @ldap_first_entry($this->_ldap->getResource(), $this->_resultId);
@@ -304,7 +304,7 @@ class Zend_Ldap_Collection_Iterator_Default implements Iterator, Countable
      *
      * @return boolean
      */
-    public function valid()
+    public function valid(): bool
     {
         return (is_resource($this->_current));
     }
