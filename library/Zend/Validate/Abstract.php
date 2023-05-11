@@ -32,6 +32,8 @@ require_once 'Zend/Validate/Interface.php';
  */
 abstract class Zend_Validate_Abstract implements Zend_Validate_Interface
 {
+    public ?bool $zfBreakChainOnFailure = null;
+
     /**
      * The value to be validated
      *

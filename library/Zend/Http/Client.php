@@ -277,6 +277,8 @@ class Zend_Http_Client
      */
     protected static $_fileInfoDb = null;
 
+    private $_stream_name = false;
+
     /**
      * Constructor method. Will create a new HTTP client. Accepts the target
      * URL and optionally configuration array.
