@@ -149,11 +149,15 @@ class Zend_Config_Writer_Ini extends Zend_Config_Writer_FileAbstract
      */
     protected function _prepareValue($value)
     {
+        if ($value === null) {
+            return null;
+        }
+
         if (is_integer($value) || is_float($value)) {
             return $value;
         } elseif (is_bool($value)) {
-            return ($value ? 'true' : 'false');
-        } elseif (strpos($value, '"') === false) {
+            return $value ? 'true' : 'false';
+        } elseif (is_string($value) && strpos($value, '"') === false) {
             return '"' . $value .  '"';
         } else {
             /** @see Zend_Config_Exception */
