@@ -48,6 +48,8 @@ class Zend_Controller_Router_Route_Chain extends Zend_Controller_Router_Route_Ab
      */
     protected $_separators = array();
 
+    protected ?Zend_Controller_Request_Abstract $_request = null;
+
     /**
      * Instantiates route based on passed Zend_Config structure
      *
